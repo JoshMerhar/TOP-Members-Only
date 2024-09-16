@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/styles.css">
+        <title>User Login</title>
+    </head>
+    <body>
+        <div class="container">
+            <form action="/login" method="POST">
+                <div class="form-item">
+                    <label for="username">Username or Email: </label>
+                    <input type="text" name="username" id="username" placeholder="Username or Email" maxlength="50" required>
+                </div>
+                <div class="form-item">
+                    <label for="password">Password: </label>
+                    <input type="password" name="password" id="password" maxlength="50" required>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <div>Don't have an account? <a href="/users/new">Sign Up</a></div>
+        </div>
+    </body>
+</html>
