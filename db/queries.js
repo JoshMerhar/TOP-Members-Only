@@ -24,6 +24,15 @@ async function addUser(user) {
         VALUES ($1, $2, $3, $4, $5)`, [first_name, last_name, username, email, password]);
 }
 
+async function memberSub(id) {
+    await pool.query("UPDATE users SET member_status = true WHERE user_id = $1", [id]);
+}
+
+async function memberUnsub(id) {
+    await pool.query("UPDATE users SET member_status = false WHERE user_id = $1", [id]);
+
+}
+
 // messages queries
 
 module.exports = {
@@ -31,4 +40,6 @@ module.exports = {
     countMembers,
     countMessages,
     addUser,
+    memberSub,
+    memberUnsub,
 }

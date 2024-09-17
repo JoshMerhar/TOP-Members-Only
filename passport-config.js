@@ -6,8 +6,7 @@ const pool = require('./db/pool');
 passport.use(
     new LocalStrategy(async (username, password, done) => {
         try {
-            const { rows } = await pool.query("SELECT * FROM users WHERE username = $1 OR email = $2", [username, username]);
-            console.log('hello');
+            const { rows } = await pool.query("SELECT * FROM users WHERE username = $1 OR email = $1", [username]);
             const user = rows[0];
             if (!user) {
                 return done(null, false, { message:'Username or Email not found' });

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/styles.css">
+        <title>User Portal</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Welcome, <%= user.first_name + ' ' + user.last_name %>!</h1>
+            <% if (!user.member_status) { %>
+                <p>You aren't a member!</p>
+                <form action="/users/user-portal" method="POST">
+                    <button type="submit">Become a Member</button>
+                </form>
+            <% } else { %> 
+                <p>You are a member!</p>
+                <form action="/users/user-portal" method="POST">
+                    <button type="submit">End Membership</button>
+                </form>
+            <% } %>
+            <a href="/logout">Log Out</a>
+        </div>
+    </body>
+</html>
