@@ -19,7 +19,6 @@ indexRouter.get('/logout', (req, res, next) => {
       if (err) {
         return next(err);
       }
-      console.log('Logged out.')
       res.redirect("/");
     });
 });

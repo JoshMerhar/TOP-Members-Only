@@ -6,14 +6,16 @@
     </head>
     <body>
         <div class="container">
-            <h1>Become a dignified member.</h1>
-            <%- include("partials/errors.ejs") %>
-            <form action="/users/member-signup" method="POST">
-                <label for="memberPassword">Password: </label>
-                <input type="text" name="memberPassword" id="memberPassword" required>
-                <button type="submit">Submit</button>
-            </form>
-            <a href="/users/user-portal">Cancel</a>
+            <div class="main-content">
+                <h1>Become a dignified member.</h1>
+                <%- include("partials/errors.ejs") %>
+                <form action="/users/member-signup" method="POST">
+                    <label for="memberPassword">Password: </label>
+                    <input type="text" name="memberPassword" id="memberPassword" required>
+                    <button type="submit">Submit</button>
+                </form>
+                <a href="/users/user-portal">Cancel</a>
+            </div>
         </div>
     </body>
 </html>

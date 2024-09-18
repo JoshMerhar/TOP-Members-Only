@@ -6,13 +6,15 @@
     </head>
     <body>
         <div class="container">
-            <h1>End Membership</h1>
-            <h3>Are you sure you want to end your membership?</h3>
-            <%- include("partials/errors.ejs") %>
-            <form action="/users/end-membership" method="POST">
-                <button type="submit">Get me out of here</button>
-            </form>
-            <a href="/users/user-portal">Cancel</a>
+            <div class="main-content">
+                <h1>End Membership</h1>
+                <h3>Are you sure you want to end your membership?</h3>
+                <%- include("partials/errors.ejs") %>
+                <form action="/users/end-membership" method="POST">
+                    <button type="submit">Get me out of here</button>
+                </form>
+                <a href="/users/user-portal">Cancel</a>
+            </div>
         </div>
     </body>
 </html>

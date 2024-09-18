@@ -6,15 +6,18 @@
     </head>
     <body>
         <div class="container">
-            <h1>Welcome, <%= user.first_name + ' ' + user.last_name %>!</h1>
-            <% if (!user.member_status) { %>
-                <p>You aren't a member!</p>
-                <a href="/users/member-signup">Become a member</a>
-            <% } else { %> 
-                <p>You are a member!</p>
-                <a href="/users/end-membership">End Membership</a>
-            <% } %>
-            <a href="/logout">Log Out</a>
+            <div class="main-content">
+                <h1>Welcome, <%= user.first_name + ' ' + user.last_name %>!</h1>
+                <a href="/messages/new">Write a Message</a>
+                <% if (!user.member_status) { %>
+                    <p>You aren't a member!</p>
+                    <a href="/users/member-signup">Become a member</a>
+                <% } else { %> 
+                    <p>You are a member!</p>
+                    <a href="/users/end-membership">End Membership</a>
+                <% } %>
+                <a href="/logout">Log Out</a>
+            </div>
         </div>
     </body>
 </html>

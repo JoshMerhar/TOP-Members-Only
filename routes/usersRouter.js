@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const usersRouter = Router();
 const usersController = require('../controllers/usersController');
-const db = require('../db/queries');
 const isAuth = require('./auth').isAuth;
 
 usersRouter.get('/new', usersController.newUserGet);
@@ -9,7 +8,6 @@ usersRouter.get('/new', usersController.newUserGet);
 usersRouter.post('/new', usersController.newUserPost);
 
 usersRouter.get('/user-portal', isAuth, (req, res, next) => {
-    console.log(req.user);
     res.render('userPortal', { user: req.user });
 });
 

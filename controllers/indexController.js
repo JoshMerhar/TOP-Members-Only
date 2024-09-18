@@ -8,6 +8,9 @@ async function getAllCounts(req, res) {
 }
 
 async function getLogin(req, res) {
+    if (req.user) {
+        return res.redirect('/users/user-portal');
+    }
     res.render('login');
 }
 

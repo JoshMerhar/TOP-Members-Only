@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/styles.css">
+        <title>New Message</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="main-content">
+                <h1>All Messages</h1>
+                <a href="/">Return Home</a>
+                <div class="messages-container">
+                    <% messages.forEach(message => { %>
+                        <div class="message-card">
+                            <h3 class="message-title"><%= message.message_title %></h3>
+                            <p class="message-text"><%= message.message_text %></p>
+                            <p class="message-author">
+                                <% if (!user || !user.member_status) { %>
+                                    Written by: HIDDEN NAME
+                                <% } else if (user && user.member_status) { %>
+                                    Written by: <%= message.username %>
+                                <% } %>
+                            </p>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

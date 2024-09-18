@@ -30,10 +30,19 @@ async function memberSub(id) {
 
 async function memberUnsub(id) {
     await pool.query("UPDATE users SET member_status = false WHERE user_id = $1", [id]);
-
 }
 
 // messages queries
+async function getAllMessages() {
+    const { rows } = await pool.query("SELECT * FROM messages JOIN users ON messages.user_id = users.user_id");
+    return rows;
+}
+
+async function addMessage(message) {
+    const { message_title, message_text, timestamp, user_id } = message;
+    await pool.query(`INSERT INTO messages (message_title, message_text, timestamp, user_id)
+        VALUES ($1, $2, $3, $4)`, [message_title, message_text, timestamp, user_id]);
+}
 
 module.exports = {
     countUsers,
@@ -42,4 +51,6 @@ module.exports = {
     addUser,
     memberSub,
     memberUnsub,
+    getAllMessages,
+    addMessage,
 }

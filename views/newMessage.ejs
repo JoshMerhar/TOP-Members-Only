@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/styles.css">
+        <title>New Message</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="main-content">
+                <h1>New Message</h1>
+                <%- include("partials/errors.ejs") %>
+                <form class="input-form" action="/messages/new" method="POST">
+                    <div class="form-item">
+                        <label for="messageTitle">Message Title: </label>
+                        <input type="text" name="messageTitle" id="messageTitle" placeholder="Title" maxlength="50" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="messageText">Enter Message: </label>
+                        <textarea name="messageText" id="messageText" class="message-text" rows="4" cols="50" maxlength="240" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Submit</button>
+                </form>
+                <a href="/users/user-portal">Cancel</a>
+            </div>
+        </div>
+    </body>
+</html>
