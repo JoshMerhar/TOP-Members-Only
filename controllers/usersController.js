@@ -52,7 +52,34 @@ const newUserPost = [
     }
 ];
 
+async function memberSubPost(req, res) {
+    const password = req.body.memberPassword;
+    const memberStatus = req.user.member_status;
+    if (password === process.env.MEMBER_PASSWORD && !memberStatus) {
+        await db.memberSub(req.user.user_id);
+        res.redirect('/users/user-portal');
+    } else if (password !== process.env.MEMBER_PASSWORD) {
+        const error = { msg: 'Incorrect password' };
+        res.status(400).render('memberSub', { errors: [error] });
+    } else if (password === process.env.MEMBER_PASSWORD && memberStatus) {
+        const error = { msg: "You're already a member!" };
+        res.status(400).render('memberSub', { errors: [error] });
+    }
+}
+
+async function memberUnsubPost(req, res) {
+    if (req.user.member_status) {
+        await db.memberUnsub(req.user.user_id);
+        res.redirect('/users/user-portal');
+    } else {
+        const error = { msg: 'You must be a member in order to end a membership!' };
+        res.status(400).render('memberUnsub', { errors: [error] });
+    }
+}
+
 module.exports = {
     newUserGet,
     newUserPost,
+    memberSubPost,
+    memberUnsubPost,
 }

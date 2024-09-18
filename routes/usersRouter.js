@@ -13,15 +13,16 @@ usersRouter.get('/user-portal', isAuth, (req, res, next) => {
     res.render('userPortal', { user: req.user });
 });
 
-usersRouter.post('/user-portal', (req, res, next) => {
-    if (!req.user.member_status) {
-        db.memberSub(req.user.user_id);
-        console.log('Now a member!');
-    } else {
-        db.memberUnsub(req.user.user_id);
-        console.log('No longer a member');
-    }
-    res.redirect('/users/user-portal');
-})
+usersRouter.get('/member-signup', isAuth, (req, res, next) => {
+    res.render('memberSub');
+});
+
+usersRouter.post('/member-signup', usersController.memberSubPost);
+
+usersRouter.get('/end-membership', isAuth, (req, res, next) => { 
+    res.render('memberUnsub');
+});
+
+usersRouter.post('/end-membership', usersController.memberUnsubPost);
 
 module.exports = usersRouter;
