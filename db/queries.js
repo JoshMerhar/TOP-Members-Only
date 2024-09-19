@@ -34,7 +34,7 @@ async function memberUnsub(id) {
 
 // messages queries
 async function getAllMessages() {
-    const { rows } = await pool.query("SELECT * FROM messages JOIN users ON messages.user_id = users.user_id");
+    const { rows } = await pool.query("SELECT * FROM messages JOIN users ON messages.user_id = users.user_id ORDER BY message_id DESC");
     return rows;
 }
 

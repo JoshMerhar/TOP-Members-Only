@@ -14,13 +14,13 @@
                         <div class="message-card">
                             <h3 class="message-title"><%= message.message_title %></h3>
                             <p class="message-text"><%= message.message_text %></p>
-                            <p class="message-author">
-                                <% if (!user || !user.member_status) { %>
-                                    Written by: HIDDEN NAME
-                                <% } else if (user && user.member_status) { %>
-                                    Written by: <%= message.username %>
-                                <% } %>
-                            </p>
+                            <% if (!user || !user.member_status) { %>
+                                <p class="message-author">Written by: HIDDEN NAME</p>
+                                <p class="message-time">Submitted: HIDDEN TIME</p>
+                            <% } else if (user && user.member_status) { %>
+                                <p class="message-author">Written by: <%= message.username %></p>
+                                <p class="message-time">Submitted: <%= message.timestamp %></p>
+                            <% } %>
                         </div>
                     <% }) %>
                 </div>

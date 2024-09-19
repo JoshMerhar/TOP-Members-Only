@@ -7,14 +7,41 @@
     <body>
         <div class="container">
             <div class="main-content">
-                <h1>Public Area</h1>
-                <ul>
-                    <li><b>Number of users</b>: <%= userCount %></li>
-                    <li><b>Number of members</b>: <%= memberCount %></li>
-                    <li><b>Number of messages</b>: <%= messageCount %></li>
-                </ul>
-                <a href="/users/new">Sign Up</a>
-                <a href="/login">Log In</a>
+                <div class="index-content">
+                    <h1>Public Area</h1>
+                    <ul>
+                        <li><b>Number of users</b>: <%= userCount %></li>
+                        <li><b>Number of members</b>: <%= memberCount %></li>
+                        <li><b>Number of messages</b>: <%= messageCount %></li>
+                    </ul>
+                    <% if (!user) { %>
+                        <a href="/login">Log In</a>
+                        <div>New here? <a href="/users/new">Sign Up</a></div>
+                    <% } else { %>
+                        <a href="/users/user-portal">User Portal</a>
+                        <a href="/logout">Log Out</a>
+                    <% } %>
+                </div>
+                <div class="messages-container">
+                    <h2>Messages</h2>
+                    <% if (messages) { %>
+                        <% messages.forEach(message => { %>
+                            <div class="message-card">
+                                <h3 class="message-title"><%= message.message_title %></h3>
+                                <p class="message-text"><%= message.message_text %></p>
+                                <% if (!user || !user.member_status) { %>
+                                    <p class="message-author">Written by: HIDDEN NAME</p>
+                                    <p class="message-time">Submitted: HIDDEN TIME</p>
+                                <% } else if (user && user.member_status) { %>
+                                    <p class="message-author">Written by: <%= message.username %></p>
+                                    <p class="message-time">Submitted: <%= message.timestamp %></p>
+                                <% } %>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No messages to show!</p>
+                    <% } %>
+                </div>
             </div>
         </div>
     </body>

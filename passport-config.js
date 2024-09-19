@@ -9,16 +9,18 @@ passport.use(
             const { rows } = await pool.query("SELECT * FROM users WHERE username = $1 OR email = $1", [username]);
             const user = rows[0];
             if (!user) {
-                return done(null, false, { message:'Username or Email not found' });
+                // FIGURE OUT HOW TO DISPLAY ERROR ON LOGIN PAGE
+                return done(null, false, { message: 'Username or Email not found' });
             }
             const match = await bcrypt.compare(password, user.password);
             if (!match) {
+                // FIGURE OUT HOW TO DISPLAY ERROR ON LOGIN PAGE
                 // passwords do not match!
                 return done(null, false, { message: "Incorrect password" });
             }
             return done(null, user);
         } catch(err) {
-        return done(err);
+            return done(err);
         }
     })
 );

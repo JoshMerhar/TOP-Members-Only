@@ -8,18 +8,30 @@ indexRouter.get('/', indexController.getAllCounts);
 
 indexRouter.get('/login', indexController.getLogin);
 
-indexRouter.post('/login', passport.authenticate("local", {
-        successRedirect: "/users/user-portal",
-        failureRedirect: "/login"
-    })
-);
+indexRouter.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, options) => {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            req.session.messages = options;
+            return res.redirect('/login');
+        }
+        req.logIn(user, (err) => {
+            if (err) {
+                return next(err);
+            }
+            return res.redirect('/users/user-portal');
+        });
+    })(req, res, next);
+});
 
 indexRouter.get('/logout', (req, res, next) => {
     req.logout((err) => {
-      if (err) {
-        return next(err);
-      }
-      res.redirect("/");
+        if (err) {
+            return next(err);
+        }
+        res.redirect("/");
     });
 });
 
