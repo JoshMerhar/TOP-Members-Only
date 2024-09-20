@@ -8,14 +8,14 @@
         <div class="container">
             <div class="main-content">
                 <div class="index-content">
-                    <h1>Public Area</h1>
-                    <ul>
-                        <li><b>Number of users</b>: <%= userCount %></li>
-                        <li><b>Number of members</b>: <%= memberCount %></li>
-                        <li><b>Number of messages</b>: <%= messageCount %></li>
-                    </ul>
+                    <h1>Messages From the People</h1>
+                    <div class="app-counts">
+                        <div><b>Number of users</b>: <%= userCount %></div>
+                        <div><b>Number of members</b>: <%= memberCount %></div>
+                        <div><b>Number of messages</b>: <%= messageCount %></div>
+                    </div>
                     <% if (!user) { %>
-                        <a href="/login">Log In</a>
+                        <a href="/login" class="login-button">Log In</a>
                         <div>New here? <a href="/users/new">Sign Up</a></div>
                     <% } else { %>
                         <a href="/users/user-portal">User Portal</a>
