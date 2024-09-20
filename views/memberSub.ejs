@@ -8,10 +8,14 @@
         <div class="container">
             <div class="main-content">
                 <h1>Become a dignified member.</h1>
+                <div class="member-password-puzzle">
+                    <p>Unscramble the letters below to reveal the two-word secret phrase. Enter the phrase as all lower-case letters with no spaces.</p>
+                    <p>seems a peon</p>
+                </div>
                 <%- include("partials/errors.ejs") %>
                 <form action="/users/member-signup" method="POST">
                     <label for="memberPassword">Password: </label>
-                    <input type="password" name="memberPassword" id="memberPassword" required>
+                    <input type="text" name="memberPassword" id="memberPassword" required>
                     <button type="submit">Submit</button>
                 </form>
                 <a href="/users/user-portal">Cancel</a>

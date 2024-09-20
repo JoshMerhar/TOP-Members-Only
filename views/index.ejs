@@ -32,6 +32,10 @@
                                 <% if (!user || !user.member_status) { %>
                                     <p class="message-author">Written by: HIDDEN NAME</p>
                                     <p class="message-time">Submitted: HIDDEN TIME</p>
+                                <% } else if (user && user.admin_status) { %>
+                                    <p class="message-author">Written by: <%= message.username %></p>
+                                    <p class="message-time">Submitted: <%= message.timestamp %></p>
+                                    <a href="/messages/delete/<%= message.message_id %>">Delete Message</a>
                                 <% } else if (user && user.member_status) { %>
                                     <p class="message-author">Written by: <%= message.username %></p>
                                     <p class="message-time">Submitted: <%= message.timestamp %></p>

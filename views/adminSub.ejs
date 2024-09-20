@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/styles.css">
+        <title>Become an Admin</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="main-content">
+                <h1>Become a dedicated admin.</h1>
+                <div class="admin-password-text">
+                    <p>Are you ready to take on the responsibility of having the power to delete messages?</p>
+                    <p>Only those who have been directed by THE BOSS will know the password.</p>
+                </div>
+                <%- include("partials/errors.ejs") %>
+                <form action="/users/admin-signup" method="POST">
+                    <label for="adminPassword">Password: </label>
+                    <input type="password" name="adminPassword" id="adminPassword" required>
+                    <button type="submit">Submit</button>
+                </form>
+                <a href="/users/user-portal">Cancel</a>
+            </div>
+        </div>
+    </body>
+</html>

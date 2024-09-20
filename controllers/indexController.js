@@ -20,7 +20,6 @@ async function getLogin(req, res) {
     const errorMessage = req.session.messages || [];
     if (errorMessage.message) {
         const error = { msg: errorMessage.message };
-        console.log(error);
         req.session.messages = []; // Clear error messages after rendering
         return res.render('login', { errors: [error] });
     } else {

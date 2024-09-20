@@ -77,9 +77,36 @@ async function memberUnsubPost(req, res) {
     }
 }
 
+async function adminSubPost(req, res) {
+    const password = req.body.adminPassword;
+    const adminStatus = req.user.admin_status;
+    if (password === process.env.ADMIN_PASSWORD && !adminStatus) {
+        await db.adminSub(req.user.user_id);
+        res.redirect('/users/user-portal');
+    } else if (password !== process.env.ADMIN_PASSWORD) {
+        const error = { msg: 'Incorrect password' };
+        res.status(400).render('adminSub', { errors: [error] });
+    } else if (password === process.env.ADMIN_PASSWORD && adminStatus) {
+        const error = { msg: "You're already an admin!" };
+        res.status(400).render('adminSub', { errors: [error] });
+    }
+}
+
+async function adminUnsubPost(req, res) {
+    if (req.user.admin_status) {
+        await db.adminUnsub(req.user.user_id);
+        res.redirect('/users/user-portal');
+    } else {
+        const error = { msg: 'You must be an admin in order to quit!' };
+        res.status(400).render('adminUnsub', { errors: [error] });
+    }
+}
+
 module.exports = {
     newUserGet,
     newUserPost,
     memberSubPost,
     memberUnsubPost,
+    adminSubPost,
+    adminUnsubPost
 }

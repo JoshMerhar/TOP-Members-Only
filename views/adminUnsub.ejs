@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/styles.css">
+        <title>End Admin Service</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="main-content">
+                <h1>Abandon Admin Duties</h1>
+                <h3>Was the responsibility too much to handle?</h3>
+                <%- include("partials/errors.ejs") %>
+                <form action="/users/admin-quit" method="POST">
+                    <button type="submit">Quit</button>
+                </form>
+                <a href="/users/user-portal">Cancel</a>
+            </div>
+        </div>
+    </body>
+</html>

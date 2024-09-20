@@ -23,4 +23,16 @@ usersRouter.get('/end-membership', isAuth, (req, res, next) => {
 
 usersRouter.post('/end-membership', usersController.memberUnsubPost);
 
+usersRouter.get('/admin-signup', isAuth, (req, res, next) => {
+    res.render('adminSub');
+});
+
+usersRouter.post('/admin-signup', usersController.adminSubPost);
+
+usersRouter.get('/admin-quit', isAuth, (req, res, next) => {
+    res.render('adminUnsub');
+});
+
+usersRouter.post('/admin-quit', usersController.adminUnsubPost);
+
 module.exports = usersRouter;

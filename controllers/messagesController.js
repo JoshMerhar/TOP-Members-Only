@@ -1,16 +1,6 @@
 const db = require('../db/queries');
 const { body, validationResult } = require("express-validator");
 
-async function showAllMessages(req, res) {
-    const messages = await db.getAllMessages();
-    if (req.user) {
-        const user = req.user;
-        return res.render('messages', { messages: messages, user: user });
-    } else {
-        res.render('messages', { messages: messages, user: undefined });
-    }
-}
-
 async function newMessageGet(req, res) {
     res.render('newMessage');
 }
@@ -41,12 +31,22 @@ const newMessagePost = [
             user_id: req.user.user_id
         }
         db.addMessage(newMessage);
-        res.redirect("/messages");
+        res.redirect("/");
     }
 ];
 
+async function messageDeleteGet(req, res) {
+    res.render('messageDelete', { message_id: req.params.id });
+}
+
+async function messageDeletePost(req, res) {
+    await db.deleteMessage(req.params.id);
+    res.redirect('/');
+}
+
 module.exports = {
-    showAllMessages,
     newMessageGet,
     newMessagePost,
+    messageDeleteGet,
+    messageDeletePost
 }

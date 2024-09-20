@@ -78,3 +78,13 @@ body {
     padding: 1rem;
     width: 100%;
 }
+
+.member-password-puzzle {
+    text-align: center;
+    width: 75%;
+}
+
+.admin-password-text,
+.admin-description {
+    text-align: center;
+}
