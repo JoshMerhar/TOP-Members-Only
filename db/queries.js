@@ -40,6 +40,11 @@ async function adminUnsub(id) {
     await pool.query("UPDATE users SET admin_status = false WHERE user_id = $1", [id]);
 }
 
+async function checkUsernameEmail(userInfo) {
+    const { rows } = await pool.query("SELECT * FROM users WHERE username = $1 OR email = $1", [userInfo]);
+    if (rows) return true;
+}
+
 // messages queries
 async function getAllMessages() {
     const { rows } = await pool.query("SELECT * FROM messages JOIN users ON messages.user_id = users.user_id ORDER BY message_id DESC");
@@ -65,6 +70,7 @@ module.exports = {
     memberUnsub,
     adminSub,
     adminUnsub,
+    checkUsernameEmail,
     getAllMessages,
     addMessage,
     deleteMessage

@@ -8,10 +8,10 @@
         <div class="container">
             <div class="main-content">
                 <h1>End Membership</h1>
-                <h3>Are you sure you want to end your membership?</h3>
                 <%- include("partials/errors.ejs") %>
-                <form action="/users/end-membership" method="POST">
-                    <button type="submit">Get me out of here</button>
+                <form class="input-form" action="/users/end-membership" method="POST">
+                    <h3>Are you sure you want to end your membership?</h3>
+                    <button type="submit" class="custom-button">Get me out of here</button>
                 </form>
                 <a href="/users/user-portal">Cancel</a>
             </div>

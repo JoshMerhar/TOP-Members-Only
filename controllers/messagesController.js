@@ -24,10 +24,14 @@ const newMessagePost = [
             });
         }
         const { messageTitle, messageText } = req.body;
+        const newDate = new Date();
+        const dateAdded = newDate.toLocaleDateString();
+        const timeAdded = newDate.toLocaleTimeString();
+        const messageAdded = dateAdded + 'at' + timeAdded;
         const newMessage = {
             message_title: messageTitle,
             message_text: messageText,
-            timestamp: new Date(),
+            timestamp: messageAdded,
             user_id: req.user.user_id
         }
         db.addMessage(newMessage);

@@ -8,10 +8,10 @@
         <div class="container">
             <div class="main-content">
                 <h1>Abandon Admin Duties</h1>
-                <h3>Was the responsibility too much to handle?</h3>
                 <%- include("partials/errors.ejs") %>
-                <form action="/users/admin-quit" method="POST">
-                    <button type="submit">Quit</button>
+                <form class="input-form" action="/users/admin-quit" method="POST">
+                    <h3>Was the responsibility too much to handle?</h3>
+                    <button type="submit" class="custom-button">Quit</button>
                 </form>
                 <a href="/users/user-portal">Cancel</a>
             </div>
