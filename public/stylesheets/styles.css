@@ -72,6 +72,8 @@ p {
 
 .message-text-input {
     resize: vertical;
+    font-size: 14px;
+    width: 75%;
 }
 
 .submit-button {
