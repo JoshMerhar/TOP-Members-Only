@@ -42,7 +42,7 @@ async function adminUnsub(id) {
 
 async function checkUsernameEmail(userInfo) {
     const { rows } = await pool.query("SELECT * FROM users WHERE username = $1 OR email = $1", [userInfo]);
-    if (rows) return true;
+    if (rows[0]) return true;
 }
 
 // messages queries

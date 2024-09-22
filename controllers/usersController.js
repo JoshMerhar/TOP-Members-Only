@@ -39,8 +39,8 @@ const newUserPost = [
             });
         }
         const { firstName, lastName, username, email, password } = req.body;
-        const takenUsername = db.checkUsernameEmail(username);
-        const takenEmail = db.checkUsernameEmail(email);
+        const takenUsername = await db.checkUsernameEmail(username);
+        const takenEmail = await db.checkUsernameEmail(email);
         if (takenUsername || takenEmail) {
             const error = { msg: 'Username or Email already taken' }
             return res.status(400).render('newUserError', {

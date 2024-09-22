@@ -23,7 +23,7 @@
                     <% } %>
                 </div>
                 <div class="messages-container">
-                    <h2>Messages</h2>
+                    <h1>Messages</h1>
                     <% if (messages) { %>
                         <% messages.forEach(message => { %>
                             <div class="message-card">
@@ -35,7 +35,7 @@
                                 <% } else if (user && user.admin_status) { %>
                                     <p class="message-author"><b>Written by</b>: <%= message.username %></p>
                                     <p class="message-time"><b>Submitted</b>: <%= message.timestamp %></p>
-                                    <a href="/messages/delete/<%= message.message_id %>">Delete Message</a>
+                                    <a class="delete-message-button" href="/messages/delete/<%= message.message_id %>">Delete Message</a>
                                 <% } else if (user && user.member_status) { %>
                                     <p class="message-author"><b>Written by</b>: <%= message.username %></p>
                                     <p class="message-time"><b>Submitted</b>: <%= message.timestamp %></p>

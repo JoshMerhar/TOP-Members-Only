@@ -27,7 +27,7 @@ const newMessagePost = [
         const newDate = new Date();
         const dateAdded = newDate.toLocaleDateString();
         const timeAdded = newDate.toLocaleTimeString();
-        const messageAdded = dateAdded + 'at' + timeAdded;
+        const messageAdded = dateAdded + ' at ' + timeAdded;
         const newMessage = {
             message_title: messageTitle,
             message_text: messageText,

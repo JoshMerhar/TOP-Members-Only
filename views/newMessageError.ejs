@@ -15,12 +15,12 @@
                         <input type="text" name="messageTitle" id="messageTitle" value="<%= messageTitle %>" maxlength="50" required>
                     </div>
                     <div class="form-item">
-                        <label for="messageText">Enter Message: </label>
-                        <textarea name="messageText" id="messageText" class="message-text" value="<%= messageText %>" rows="4" cols="50" maxlength="240" required></textarea>
+                        <label for="messageText">Message: </label>
+                        <textarea name="messageText" id="messageText" class="message-text-input" value="<%= messageText %>" rows="4" cols="50" maxlength="240" required></textarea>
                     </div>
                     <button type="submit" class="submit-button">Submit</button>
                 </form>
-                <a href="/users/user-portal">Cancel</a>
+                <a href="/users/user-portal" class="cancel-link">Cancel</a>
             </div>
         </div>
     </body>
