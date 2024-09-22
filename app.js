@@ -9,6 +9,8 @@ const pool = require('./db/pool');
 const indexRouter = require('./routes/indexRouter');
 const usersRouter = require('./routes/usersRouter');
 const messagesRouter = require('./routes/messagesRouter');
+const compression = require('compression');
+const helmet = require('helmet');
 require('dotenv').config();
 
 const app = express();
@@ -22,6 +24,7 @@ app.use('/favicon.ico', (req, res) => res.status(204).end());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression());
 
 app.use(session({
     store: new pgSession({
@@ -40,6 +43,14 @@ app.use(passport.session());
 
 const assetsPath = path.join(__dirname, 'public');
 app.use(express.static(assetsPath));
+
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"]
+        },
+    }),
+);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
