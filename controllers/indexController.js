@@ -13,6 +13,7 @@ async function getAllCounts(req, res) {
 }
 
 async function getLogin(req, res) {
+    // Redirect to user portal if already logged in
     if (req.user) {
         return res.redirect('/users/user-portal');
     }
