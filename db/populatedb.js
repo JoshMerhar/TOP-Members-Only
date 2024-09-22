@@ -2,7 +2,7 @@ const { Client } = require("pg");
 require('dotenv').config();
 
 const SQL = `
-    DROP TABLE IF EXISTS users, messages;
+    DROP TABLE IF EXISTS users, messages, "session";
     
     CREATE TABLE IF NOT EXISTS users (
         user_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -40,6 +40,17 @@ const SQL = `
             '12/31/1999 at 11:59:59 PM',
             '1'
         );
+
+    CREATE TABLE IF NOT EXISTS "session" (
+        "sid" varchar NOT NULL COLLATE "default",
+        "sess" json NOT NULL,
+        "expire" timestamp(6) NOT NULL
+    )
+    WITH (OIDS=FALSE);
+
+    ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
+    CREATE INDEX "IDX_session_expire" ON "session" ("expire");
 `;
 
 async function main() {
